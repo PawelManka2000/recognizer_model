@@ -10,7 +10,7 @@ def main(args=None):
 
     rate = motor_driver.create_rate(2)
     while rclpy.ok():
-        # rclpy.spin_once(motor_driver)
+        rclpy.spin_once(motor_driver)
         motor_driver.check_encoders()
 
 

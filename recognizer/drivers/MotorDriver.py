@@ -37,7 +37,7 @@ class MotorDriver(Node):
         self.baud_rate = self.get_parameter('baud_rate').value
 
 
-        self.declare_parameter('serial_debug', value=False)
+        self.declare_parameter('serial_debug', value=True)
         self.debug_serial_cmds = self.get_parameter('serial_debug').value
         if (self.debug_serial_cmds):
             print("Serial debug enabled")
@@ -71,7 +71,7 @@ class MotorDriver(Node):
         # Open serial comms
 
         print(f"Connecting to port {self.serial_port} at {self.baud_rate}.")
-        self.conn = serial.Serial(self.serial_port, self.baud_rate, timeout=1.0)
+        self.conn = serial.Serial(self.serial_port, self.baud_rate,timeout=1.0)
         print(f"Connected to {self.conn}")
         
 
@@ -86,7 +86,7 @@ class MotorDriver(Node):
         self.send_command(f"m {int(mot_1_ct_per_loop)} {int(mot_2_ct_per_loop)}")
 
     def send_encoder_read_command(self):
-        resp = self.send_command(f"ssss")
+        resp = self.send_command("ssss")
         print(resp)
         # if resp:
         #     return [int(raw_enc) for raw_enc in resp.split()]
@@ -142,7 +142,6 @@ class MotorDriver(Node):
         
         self.mutex.acquire()
         try:
-            cmd_string += "\r"
             self.conn.write(cmd_string.encode("utf-8"))
             if (self.debug_serial_cmds):
                 print("Sent: " + cmd_string)
