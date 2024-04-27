@@ -53,14 +53,14 @@
         <geometry>
             <cylinder length="0.025" radius="0.03" />
         </geometry>
-        <material name="blue"/>
+        <material name="silver"/>
     </visual>
 
     <collision>
         <geometry>
             <cylinder length="0.025" radius="0.03" />
         </geometry>
-        <material name="blue"/>
+        <material name="silver"/>
     </collision>
 
 </link>
@@ -78,14 +78,14 @@
         <geometry>
             <cylinder length="0.025" radius="0.03" />
         </geometry>
-        <material name="blue"/>
+        <material name="silver"/>
     </visual>
 
     <collision>
         <geometry>
             <cylinder length="0.025" radius="0.03" />
         </geometry>
-        <material name="blue"/>
+        <material name="silver"/>
     </collision>
 
 </link>
@@ -103,14 +103,14 @@
         <geometry>
             <cylinder length="0.025" radius="0.03" />
         </geometry>
-        <material name="blue"/>
+        <material name="silver"/>
     </visual>
 
     <collision>
         <geometry>
             <cylinder length="0.025" radius="0.03" />
         </geometry>
-        <material name="blue"/>
+        <material name="silver"/>
     </collision>
     
 </link>
@@ -128,14 +128,14 @@
         <geometry>
             <cylinder length="0.025" radius="0.03" />
         </geometry>
-        <material name="blue"/>
+        <material name="silver"/>
     </visual>
 
     <collision>
         <geometry>
             <cylinder length="0.025" radius="0.03" />
         </geometry>
-        <material name="blue"/>
+        <material name="silver"/>
     </collision>
     
 </link>
