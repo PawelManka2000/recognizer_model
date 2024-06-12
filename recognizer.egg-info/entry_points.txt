@@ -1,0 +1,2 @@
+[console_scripts]
+recognizer_robot_model = recognizer.recognizer_robot_model:main

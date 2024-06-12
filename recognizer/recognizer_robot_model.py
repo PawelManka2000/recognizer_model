@@ -1,5 +1,8 @@
 import rclpy 
 from recognizer.drivers.MotorDriver import MotorDriver
+from recognizer.enums.EDrivingModeId import EDrivingModeId
+from recognizer.recognizer_gui import main_gui
+
 
 def main(args=None):
 
@@ -12,15 +15,13 @@ def main(args=None):
     while rclpy.ok():
         rclpy.spin_once(motor_driver)
         motor_driver.check_encoders()
+        # motor_driver.send_ctrl_velo_motor_command(EDrivingModeId.FORWARD, 3.5)
 
 
     motor_driver.close_conn()
     motor_driver.destroy_node()
     rclpy.shutdown()
 
-
-# def main():
-#     print("HIHIHI ")
 
 if __name__ == '__main__':
 
