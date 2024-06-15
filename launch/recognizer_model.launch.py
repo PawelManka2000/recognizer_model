@@ -15,13 +15,13 @@ def generate_launch_description():
 
 
     pkg_path = os.path.join(get_package_share_directory('recognizer'))
-    xacro_file = os.path.join(pkg_path,'description','robot_core.xacro')
+    xacro_file = os.path.join(pkg_path,'description', 'robot_core.xacro')
 
     robot_description_config = Command(['xacro ', xacro_file])
 
-    state_publisher_params = {'robot_description':robot_description_config}
+    state_publisher_params = {'robot_description': robot_description_config}
 
-    node_recognizer_state_publisher = Node(
+    recognizer_state_publisher = Node(
         package='robot_state_publisher', 
         executable='robot_state_publisher',
         output='screen',
@@ -29,6 +29,6 @@ def generate_launch_description():
         )
     return LaunchDescription([
 
-        node_recognizer_state_publisher
+        recognizer_state_publisher
         
     ])

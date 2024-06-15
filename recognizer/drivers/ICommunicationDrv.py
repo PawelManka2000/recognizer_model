@@ -3,7 +3,7 @@ from abc import abstractmethod, ABC
 
 class ICommunicationDrv(ABC):
 
-    def send(self):
+    def send(self, raw_msg: bytes):
         pass 
 
     def receive(self):
@@ -12,3 +12,6 @@ class ICommunicationDrv(ABC):
     def start_communication(self):
         pass 
 
+
+class CommunicationDrvError(Exception):
+    pass

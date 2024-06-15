@@ -1,27 +1,55 @@
-from recognizer.drivers.ICommunicationDrv import ICommunicationDrv
+import serial
+
+from recognizer.drivers.ICommunicationDrv import ICommunicationDrv, CommunicationDrvError
+
 
 class SerialDrv(ICommunicationDrv):
 
-    def __init__():
-        pass
+    def __init__(self, serial_port, baud_rate, timeout, debug_serial_cmds=False):
 
-    def send():
+        self.__serial_conn = None
+        self.serial_port = serial_port
+        self.baud_rate = baud_rate
+        self.timeout = timeout
+        self.debug_serial_cmds = debug_serial_cmds
 
-        pass
+    def start_communication(self) -> None:
 
-    def receive():
-        pass
+        if self.__serial_conn is None:
 
-    def start_communication(self, conn_parameters : {}) -> None:
+            print(f"Connecting to port {self.serial_port} at {self.baud_rate}.")
+            self.__serial_conn = serial.Serial(self.serial_port, self.baud_rate, timeout=self.timeout)
+            print(f"Connected to {self.serial_conn}")
 
-        self.declare_parameter('serial_port', value="/dev/ttyACM0")
-        self.serial_port = self.get_parameter('serial_port').value
+        else:
+            raise CommunicationDrvError("Tried to restart already running SerialDrv")
 
-        self.declare_parameter('baud_rate', value=115200)
-        self.baud_rate = self.get_parameter('baud_rate').value
+    def close_conn(self):
+        self.__serial_conn.close()
 
+    def send(self, raw_msg: bytes):
 
-        
+        self.__serial_conn.write(raw_msg)
 
+    @property
+    def serial_conn(self):
+        if self.__serial_conn is None:
+            raise CommunicationDrvError("Tried to get serial connection that was not defined")
+        return self.__serial_conn
 
+    def receive_response(self):
 
+        if self.serial_conn:
+            try:
+                received_raw_msg = self.serial_conn.read_all()
+
+                if received_raw_msg:
+                    print(f'Received: {received_raw_msg}')
+                    return received_raw_msg
+                else:
+                    print('Timeout: No response received.')
+                    return ''
+            except serial.SerialException as e:
+                print(f'Error receiving response: {e}')
+                return ''
+        return ''
