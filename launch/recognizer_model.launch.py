@@ -10,9 +10,6 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 
-    #use_sim_time = LaunchConfiguration('use_sim_time')
-    #use_ros2_control = LaunchConfiguration('use_ros2_control')
-
 
     pkg_path = os.path.join(get_package_share_directory('recognizer'))
     xacro_file = os.path.join(pkg_path,'description', 'robot_core.xacro')

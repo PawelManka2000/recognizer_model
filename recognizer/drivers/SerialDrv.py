@@ -47,9 +47,12 @@ class SerialDrv(ICommunicationDrv):
                     print(f'Received: {received_raw_msg}')
                     return received_raw_msg
                 else:
-                    print('Timeout: No response received.')
-                    return ''
+                    raise SerialDrvTimeout("SerialDrv: Response was not received")
             except serial.SerialException as e:
                 print(f'Error receiving response: {e}')
                 return ''
-        return ''
+        return None
+
+
+class SerialDrvTimeout(Exception):
+    pass

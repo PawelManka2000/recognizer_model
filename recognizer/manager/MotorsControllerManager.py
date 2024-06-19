@@ -1,19 +1,36 @@
 from recognizer.drivers.ICommunicationDrv import ICommunicationDrv
+from recognizer.drivers.MotorsDriver import MotorsDriver
 from recognizer.enums.ECmdCode import ECmdCode
 from recognizer.enums.EMsgId import EMsgId
 from recognizer.enums.EOmniDirModeId import EOmniDirModeId
-from recognizer.drivers.SerialDrv import SerialDrv
+from recognizer.drivers.SerialDrv import SerialDrv, SerialDrvTimeout
 from recognizer.enums.EMsgId import EMsgId
 from recognizer.messages.MsgCmd import MsgCmd
 
 
-
 class MotorsControllerManager:
 
-    def __init__(self, comm_driver: ICommunicationDrv, debug_serial_cmds=True):
+    def __init__(self, comm_driver: ICommunicationDrv, motors_driver: MotorsDriver, debug_serial_cmds=True):
 
         self.comm_drv = comm_driver
+        self.__motors_driver = motors_driver
         self.debug_serial_cmds = debug_serial_cmds
+
+    @property
+    def motors_driver(self):
+        return self.__motors_driver
+
+    def update_motors_attributes(self):
+
+        try:
+            resp = self.send_encoder_read_command()
+            self.motors_driver.parse_motors_attributes(resp)
+
+        except SerialDrvTimeout as e:
+            print(e)
+            raise UpdateMotorsError("MotorsControllerManager: motors attributes were not updated due to timeout")
+
+        return resp
 
     def send_pwm_motor_command(self, omnidir_mode: EOmniDirModeId, pwm: int):
 
@@ -48,4 +65,9 @@ class MotorsControllerManager:
         self.comm_drv.send(msg_cmd_raw)
         if (self.debug_serial_cmds):
             print(f"Sent: {msg_cmd_raw}")
-        self.comm_drv.receive_response()
+
+        return self.comm_drv.receive_response()
+
+
+class UpdateMotorsError(Exception):
+    pass

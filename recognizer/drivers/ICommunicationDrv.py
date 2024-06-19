@@ -6,7 +6,7 @@ class ICommunicationDrv(ABC):
     def send(self, raw_msg: bytes):
         pass 
 
-    def receive(self):
+    def receive_response(self):
         pass 
 
     def start_communication(self):
