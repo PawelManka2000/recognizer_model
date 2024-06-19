@@ -33,8 +33,8 @@ class EncoderJointStatePublisher(Node):
 
         motors_driver = self.motors_controller_manager.motors_driver
 
-        breakpoint()
-        self.joint_state.position = [random.uniform(-1, 1) for _ in range(4)]
+        # breakpoint()
+        # self.joint_state.position = [random.uniform(-1, 1) for _ in range(4)]
         
         self.joint_state.position = motors_driver.motors_position
         self.joint_state.header.stamp = self.get_clock().now().to_msg()

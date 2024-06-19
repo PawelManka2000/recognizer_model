@@ -48,6 +48,6 @@ class MsgState:
             pos_int_value = struct.unpack('>i', pos_value_bytes)[0]
 
             velocity_dict[EMotorID(e_motor_id)] = velo
-            position_dict[EMotorID(e_motor_id)] = pos_int_value
+            position_dict[EMotorID(e_motor_id)] = float(pos_int_value)
 
         return MsgState(EMsgId(msg_id), position_dict, velocity_dict)

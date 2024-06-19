@@ -1,0 +1,109 @@
+[1.662s] Invoking command in '/home/pawelmanka/git_projects/ros2_ws/src/recognizer': PYTHONPATH=/home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/prefix_override:/home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/recognizer build --build-base /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build install --record /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/install.log --single-version-externally-managed
+[2.147s] running egg_info
+[2.148s] creating build/recognizer/recognizer.egg-info
+[2.148s] writing build/recognizer/recognizer.egg-info/PKG-INFO
+[2.149s] writing dependency_links to build/recognizer/recognizer.egg-info/dependency_links.txt
+[2.149s] writing entry points to build/recognizer/recognizer.egg-info/entry_points.txt
+[2.149s] writing requirements to build/recognizer/recognizer.egg-info/requires.txt
+[2.150s] writing top-level names to build/recognizer/recognizer.egg-info/top_level.txt
+[2.153s] writing manifest file 'build/recognizer/recognizer.egg-info/SOURCES.txt'
+[2.158s] reading manifest file 'build/recognizer/recognizer.egg-info/SOURCES.txt'
+[2.160s] writing manifest file 'build/recognizer/recognizer.egg-info/SOURCES.txt'
+[2.160s] running build
+[2.160s] running build_py
+[2.160s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build
+[2.160s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib
+[2.160s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer
+[2.160s] copying recognizer/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer
+[2.160s] copying recognizer/recognizer_robot_model.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer
+[2.161s] copying recognizer/recognizer_gui.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer
+[2.161s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers
+[2.161s] copying recognizer/drivers/MotorsDriver.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers
+[2.161s] copying recognizer/drivers/ISerialRecvSubscriber.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers
+[2.161s] copying recognizer/drivers/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers
+[2.166s] copying recognizer/drivers/ISerialRecvPublisher.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers
+[2.166s] copying recognizer/drivers/ICommunicationDrv.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers
+[2.166s] copying recognizer/drivers/SerialDrv.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers
+[2.166s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/manager
+[2.166s] copying recognizer/manager/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/manager
+[2.167s] copying recognizer/manager/MotorsControllerManager.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/manager
+[2.167s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/nodes
+[2.167s] copying recognizer/nodes/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/nodes
+[2.170s] copying recognizer/nodes/RobotStatePublisher.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/nodes
+[2.170s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums
+[2.170s] copying recognizer/enums/EMotorID.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums
+[2.170s] copying recognizer/enums/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums
+[2.170s] copying recognizer/enums/EOmniDirModeId.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums
+[2.170s] copying recognizer/enums/EMsgId.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums
+[2.171s] copying recognizer/enums/ECmdCode.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums
+[2.171s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/messages
+[2.171s] copying recognizer/messages/MsgState.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/messages
+[2.171s] copying recognizer/messages/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/messages
+[2.171s] copying recognizer/messages/MsgCmd.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/messages
+[2.172s] running install
+[2.172s] running install_lib
+[2.174s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer
+[2.174s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers
+[2.174s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers/MotorsDriver.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers
+[2.174s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers/ISerialRecvSubscriber.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers
+[2.175s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers
+[2.175s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers/ISerialRecvPublisher.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers
+[2.175s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers/ICommunicationDrv.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers
+[2.175s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/drivers/SerialDrv.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers
+[2.176s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer
+[2.176s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/manager
+[2.177s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/manager/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/manager
+[2.177s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/manager/MotorsControllerManager.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/manager
+[2.178s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/nodes
+[2.178s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/nodes/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/nodes
+[2.178s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/nodes/RobotStatePublisher.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/nodes
+[2.179s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/recognizer_robot_model.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer
+[2.179s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums
+[2.179s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums/EMotorID.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums
+[2.179s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums
+[2.179s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums/EOmniDirModeId.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums
+[2.179s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums/EMsgId.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums
+[2.179s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/enums/ECmdCode.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums
+[2.179s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/recognizer_gui.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer
+[2.179s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/messages
+[2.180s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/messages/MsgState.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/messages
+[2.180s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/messages/__init__.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/messages
+[2.180s] copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/messages/MsgCmd.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/messages
+[2.180s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers/MotorsDriver.py to MotorsDriver.cpython-310.pyc
+[2.184s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers/ISerialRecvSubscriber.py to ISerialRecvSubscriber.cpython-310.pyc
+[2.184s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers/__init__.py to __init__.cpython-310.pyc
+[2.184s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers/ISerialRecvPublisher.py to ISerialRecvPublisher.cpython-310.pyc
+[2.186s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers/ICommunicationDrv.py to ICommunicationDrv.cpython-310.pyc
+[2.186s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/drivers/SerialDrv.py to SerialDrv.cpython-310.pyc
+[2.186s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/__init__.py to __init__.cpython-310.pyc
+[2.186s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/manager/__init__.py to __init__.cpython-310.pyc
+[2.187s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/manager/MotorsControllerManager.py to MotorsControllerManager.cpython-310.pyc
+[2.187s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/nodes/__init__.py to __init__.cpython-310.pyc
+[2.187s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/nodes/RobotStatePublisher.py to RobotStatePublisher.cpython-310.pyc
+[2.187s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/recognizer_robot_model.py to recognizer_robot_model.cpython-310.pyc
+[2.189s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums/EMotorID.py to EMotorID.cpython-310.pyc
+[2.189s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums/__init__.py to __init__.cpython-310.pyc
+[2.190s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums/EOmniDirModeId.py to EOmniDirModeId.cpython-310.pyc
+[2.190s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums/EMsgId.py to EMsgId.cpython-310.pyc
+[2.190s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/enums/ECmdCode.py to ECmdCode.cpython-310.pyc
+[2.190s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/recognizer_gui.py to recognizer_gui.cpython-310.pyc
+[2.193s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/messages/MsgState.py to MsgState.cpython-310.pyc
+[2.193s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/messages/__init__.py to __init__.cpython-310.pyc
+[2.194s] byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/messages/MsgCmd.py to MsgCmd.cpython-310.pyc
+[2.194s] running install_data
+[2.198s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/ament_index
+[2.199s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/ament_index/resource_index
+[2.199s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/ament_index/resource_index/packages
+[2.199s] copying resource/recognizer -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/ament_index/resource_index/packages
+[2.200s] copying package.xml -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/recognizer
+[2.200s] copying launch/recognizer_model.launch.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/recognizer
+[2.200s] creating /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/recognizer/description
+[2.200s] copying description/inertial_macros.xacro -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/recognizer/description
+[2.207s] copying description/robot_core.xacro -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/recognizer/description
+[2.208s] copying description/materials.xacro -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/share/recognizer/description
+[2.213s] running install_egg_info
+[2.218s] Copying build/recognizer/recognizer.egg-info to /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer-0.0.0-py3.10.egg-info
+[2.219s] running install_scripts
+[2.270s] Installing recognizer_robot_model script to /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/recognizer
+[2.271s] writing list of installed files to '/home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/install.log'
+[2.304s] Invoked command in '/home/pawelmanka/git_projects/ros2_ws/src/recognizer' returned '0': PYTHONPATH=/home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/prefix_override:/home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/recognizer build --build-base /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build install --record /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/install.log --single-version-externally-managed

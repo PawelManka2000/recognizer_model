@@ -1,0 +1,22 @@
+running egg_info
+writing build/recognizer/recognizer.egg-info/PKG-INFO
+writing dependency_links to build/recognizer/recognizer.egg-info/dependency_links.txt
+writing entry points to build/recognizer/recognizer.egg-info/entry_points.txt
+writing requirements to build/recognizer/recognizer.egg-info/requires.txt
+writing top-level names to build/recognizer/recognizer.egg-info/top_level.txt
+reading manifest file 'build/recognizer/recognizer.egg-info/SOURCES.txt'
+writing manifest file 'build/recognizer/recognizer.egg-info/SOURCES.txt'
+running build
+running build_py
+copying recognizer/nodes/RobotStatePublisher.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/nodes
+running install
+running install_lib
+copying /home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/build/lib/recognizer/nodes/RobotStatePublisher.py -> /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/nodes
+byte-compiling /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer/nodes/RobotStatePublisher.py to RobotStatePublisher.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer-0.0.0-py3.10.egg-info' (and everything under it)
+Copying build/recognizer/recognizer.egg-info to /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/python3.10/site-packages/recognizer-0.0.0-py3.10.egg-info
+running install_scripts
+Installing recognizer_robot_model script to /home/pawelmanka/git_projects/ros2_ws/src/recognizer/install/recognizer/lib/recognizer
+writing list of installed files to '/home/pawelmanka/git_projects/ros2_ws/src/recognizer/build/recognizer/install.log'
