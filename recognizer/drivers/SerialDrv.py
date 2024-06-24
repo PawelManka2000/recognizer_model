@@ -39,6 +39,7 @@ class SerialDrv(ICommunicationDrv):
 
                 if received_raw_msg:
                     return received_raw_msg
+                # TODO implement
                 else:
                     raise SerialDrvTimeout("SerialDrv: Response was not received")
             except serial.SerialException as e:

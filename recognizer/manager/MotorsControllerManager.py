@@ -1,3 +1,6 @@
+import queue
+from threading import Thread
+
 from recognizer.drivers.ICommunicationDrv import ICommunicationDrv
 from recognizer.drivers.MotorsDriver import MotorsDriver
 from recognizer.enums.ECmdCode import ECmdCode
@@ -15,6 +18,8 @@ class MotorsControllerManager:
         self.comm_drv = comm_driver
         self.__motors_driver = motors_driver
         self.debug_serial_cmds = debug_serial_cmds
+        self.cmd_queue = queue.Queue()
+        self.cmd_invoker_thread = Thread()
 
     @property
     def motors_driver(self):
@@ -36,9 +41,12 @@ class MotorsControllerManager:
 
         payload = [omnidir_mode.value, pwm]
         msg_cmd = MsgCmd(EMsgId.MsgCmdReq.value, ECmdCode.CTRL_VELO.value, payload)
-        resp = self.send_raw_command(bytes(msg_cmd))
-
-        return resp
+        #TODO add error handling
+        try:
+            resp = self.send_raw_command(bytes(msg_cmd))
+            return resp
+        except SerialDrvTimeout as e:
+            pass
 
     def send_ctrl_velo_motor_command(self, omnidir_mode: EOmniDirModeId, velocity: float):
 
@@ -48,9 +56,13 @@ class MotorsControllerManager:
 
         payload = [omnidir_mode.value, velo_whole_num, velo_fraction_num]
         msg_cmd = MsgCmd(EMsgId.MsgCmdReq.value, ECmdCode.CTRL_VELO.value, payload)
-        resp = self.send_raw_command(bytes(msg_cmd))
+        #TODO add error handling
+        try:
+            resp = self.send_raw_command(bytes(msg_cmd))
+            return resp
+        except SerialDrvTimeout as e:
+            pass
 
-        return resp
 
     def send_encoder_read_command(self):
 

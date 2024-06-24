@@ -1,22 +1,32 @@
 import tkinter as tk
 from tkinter import ttk
 
+from recognizer.enums.EOmniDirModeId import EOmniDirModeId
+from recognizer.manager.MotorsControllerManager import MotorsControllerManager
+
+
 class SpeedControlApp(tk.Tk):
-    def __init__(self):
+    def __init__(self, motor_controller_manager: MotorsControllerManager):
         super().__init__()
 
         self.title("Robot Speed Control")
-        self.geometry("300x300")
+        self.geometry("300x400")
 
-        # Create a label to display the speed
-        self.speed_label = ttk.Label(self, text="Speed: 0")
+        # Speed slider and label
+        self.speed_label = ttk.Label(self, text="Speed: 0.0")
         self.speed_label.pack(pady=10)
 
-        # Create a slider to control the speed
-        self.speed_slider = ttk.Scale(self, from_=0, to=100, orient='horizontal', command=self.update_speed)
+        self.speed_slider = ttk.Scale(self, from_=0.0, to=15.0, orient='horizontal', command=self.update_velo)
         self.speed_slider.pack(pady=10)
 
-        # Create control buttons
+        # PWM slider and label
+        self.pwm_label = ttk.Label(self, text="PWM Value: 0")
+        self.pwm_label.pack(pady=10)
+
+        self.pwm_slider = ttk.Scale(self, from_=0, to=100, orient='horizontal', command=self.update_pwm)
+        self.pwm_slider.pack(pady=10)
+
+        # Control buttons
         self.forward_button = ttk.Button(self, text="Forward", command=self.move_forward)
         self.forward_button.pack(pady=5)
 
@@ -32,39 +42,44 @@ class SpeedControlApp(tk.Tk):
         self.stop_button = ttk.Button(self, text="Stop", command=self.stop)
         self.stop_button.pack(pady=5)
 
-    def update_speed(self, event):
-        # Get the current value of the slider
-        speed = int(self.speed_slider.get())
+        self.omnidir_mode = EOmniDirModeId.STOP
+        self.motor_controller_manager = motor_controller_manager
+        self.speed_ctrl_flag = False
+        self.velo = 0.0
+        self.pwm = 0
 
-        # Update the label with the current speed
-        self.speed_label.config(text=f"Speed: {speed}")
+    def send_motor_ctrl_cmd(self):
+        if self.speed_ctrl_flag:
+            self.motor_controller_manager.send_ctrl_velo_motor_command(self.omnidir_mode, self.velo)
+        else:
+            self.motor_controller_manager.send_pwm_motor_command(self.omnidir_mode, self.pwm)
 
-        # Here you can add the code to send the speed value to your robot's control system
-        # For example:
-        # robot.set_speed(speed)
+    def update_velo(self, event):
+        self.velo = float(self.speed_slider.get())
+        self.speed_ctrl_flag = True
+        self.send_motor_ctrl_cmd()
+
+    def update_pwm(self, event):
+        self.pwm_value = int(self.pwm_slider.get())
+        self.speed_ctrl_flag = False
+        self.send_motor_ctrl_cmd()
 
     def move_forward(self):
-        # Code to move the robot forward
-        print("Moving forward")
-        # robot.move_forward()
+        self.omnidir_mode = EOmniDirModeId.FORWARD
+        self.send_motor_ctrl_cmd()
 
     def move_backward(self):
-        # Code to move the robot backward
-        print("Moving backward")
-        # robot.move_backward()
+        self.omnidir_mode = EOmniDirModeId.BACKWARD
+        self.send_motor_ctrl_cmd()
 
     def move_left(self):
-        # Code to move the robot left
-        print("Moving left")
-        # robot.move_left()
+        self.omnidir_mode = EOmniDirModeId.LEFT
+        self.send_motor_ctrl_cmd()
 
     def move_right(self):
-        # Code to move the robot right
-        print("Moving right")
-        # robot.move_right()
+        self.omnidir_mode = EOmniDirModeId.RIGHT
+        self.send_motor_ctrl_cmd()
 
     def stop(self):
-        # Code to stop the robot
-        print("Stopping")
-        # robot.stop()
-
+        self.omnidir_mode = EOmniDirModeId.STOP
+        self.send_motor_ctrl_cmd()

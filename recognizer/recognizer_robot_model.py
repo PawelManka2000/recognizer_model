@@ -11,21 +11,22 @@ from recognizer.manager.MotorsControllerManager import MotorsControllerManager
 from recognizer.nodes.OdometryPublisher import OdometryPublisher
 from recognizer.nodes.RobotStatePublisher import JointStatePublisher
 
+serial_port = "/dev/stmG4"
+baud_rate = 115200
+serial_timeout = 1
 
-def main(args=None):
+
+motors_driver = MotorsDriver()
+serial_drv = SerialDrv(serial_port, baud_rate, serial_timeout)
+serial_drv.start_communication()
+motors_controller_manager = MotorsControllerManager(serial_drv, motors_driver)
+
+
+def ros2_main(args=None):
+
     # TODO this should be in the configuration file
-    serial_port = "/dev/stmG4"
-    baud_rate = 115200
-    serial_timeout = 1
 
     rclpy.init(args=args)
-    motors_driver = MotorsDriver()
-
-    serial_drv = SerialDrv(serial_port, baud_rate, serial_timeout)
-    serial_drv.start_communication()
-
-    motors_controller_manager = MotorsControllerManager(serial_drv, motors_driver)
-
     # motors_controller_manager.send_ctrl_velo_motor_command(EOmniDirModeId.FORWARD, 3.5)
     executor = rclpy.executors.MultiThreadedExecutor()
     motor_joint_state_publisher = JointStatePublisher(motors_controller_manager)
@@ -46,15 +47,16 @@ def main(args=None):
         executor.shutdown()
         rclpy.shutdown()
 
+def main():
+    ros2_thread = threading.Thread(target=ros2_main)
+    ros2_thread.start()
+
+    app = SpeedControlApp(motors_controller_manager)
+    app.mainloop()
+
+    ros2_thread.join()
 
 if __name__ == '__main__':
-    # ros2_thread = threading.Thread(target=main)
-    # ros2_thread.start()
-    #
-    # # Create and start the Tkinter application
-    # app = SpeedControlApp()
-    # app.mainloop()
-    #
-    # # Wait for the ROS 2 thread to finish
-    # ros2_thread.join()
     main()
+
+
