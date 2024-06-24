@@ -1,14 +1,15 @@
 import os
+import threading
+
 import rclpy
 
-
+from recognizer.control_panel.recognizer_gui import SpeedControlApp
 from recognizer.drivers.MotorsDriver import MotorsDriver
 from recognizer.drivers.SerialDrv import SerialDrv
 from recognizer.enums.EOmniDirModeId import EOmniDirModeId
 from recognizer.manager.MotorsControllerManager import MotorsControllerManager
 from recognizer.nodes.OdometryPublisher import OdometryPublisher
 from recognizer.nodes.RobotStatePublisher import JointStatePublisher
-from recognizer.recognizer_gui import main_gui
 
 
 def main(args=None):
@@ -47,4 +48,13 @@ def main(args=None):
 
 
 if __name__ == '__main__':
+    # ros2_thread = threading.Thread(target=main)
+    # ros2_thread.start()
+    #
+    # # Create and start the Tkinter application
+    # app = SpeedControlApp()
+    # app.mainloop()
+    #
+    # # Wait for the ROS 2 thread to finish
+    # ros2_thread.join()
     main()
