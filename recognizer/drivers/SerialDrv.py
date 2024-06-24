@@ -27,15 +27,9 @@ class SerialDrv(ICommunicationDrv):
     def close_conn(self):
         self.__serial_conn.close()
 
-    def send(self, raw_msg: bytes):
+    def send_raw_msg(self, raw_msg: bytes):
 
         self.__serial_conn.write(raw_msg)
-
-    @property
-    def serial_conn(self):
-        if self.__serial_conn is None:
-            raise CommunicationDrvError("Tried to get serial connection that was not defined")
-        return self.__serial_conn
 
     def receive_response(self):
 
@@ -44,7 +38,6 @@ class SerialDrv(ICommunicationDrv):
                 received_raw_msg = self.serial_conn.read_all()
 
                 if received_raw_msg:
-                    print(f'Received: {received_raw_msg}')
                     return received_raw_msg
                 else:
                     raise SerialDrvTimeout("SerialDrv: Response was not received")
@@ -52,6 +45,12 @@ class SerialDrv(ICommunicationDrv):
                 print(f'Error receiving response: {e}')
                 return ''
         return None
+
+    @property
+    def serial_conn(self):
+        if self.__serial_conn is None:
+            raise CommunicationDrvError("Tried to get serial connection that was not defined")
+        return self.__serial_conn
 
 
 class SerialDrvTimeout(Exception):

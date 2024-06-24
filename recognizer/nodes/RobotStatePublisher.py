@@ -8,7 +8,7 @@ from recognizer.drivers.SerialDrv import SerialDrvTimeout
 from recognizer.manager.MotorsControllerManager import UpdateMotorsError, MotorsControllerManager
 
 
-class EncoderJointStatePublisher(Node):
+class JointStatePublisher(Node):
 
     def __init__(self, motors_controller_manager: MotorsControllerManager):
         super().__init__('encoder_joint_state_publisher')
@@ -21,7 +21,6 @@ class EncoderJointStatePublisher(Node):
                                  'right_back_wheel_joint', 'right_front_wheel_joint']
 
         self.motors_controller_manager = motors_controller_manager
-
 
     def timer_callback(self):
 

@@ -28,10 +28,13 @@ class MotorsDriver:
 
     NO_OF_MOTORS = 4
     MOTORS_INITIAL_VAL = 0
+
     def __init__(self):
 
         self.__motors_velocity = [MotorsDriver.MOTORS_INITIAL_VAL] * MotorsDriver.NO_OF_MOTORS
         self.__motor_position = [MotorsDriver.MOTORS_INITIAL_VAL] * MotorsDriver.NO_OF_MOTORS
+        self.motors_position_dict = {e_motor_id: 0 for e_motor_id in EMotorID}
+        self.motors_velocity_dict = {e_motor_id: 0 for e_motor_id in EMotorID}
 
     @property
     def motors_position(self):
@@ -47,6 +50,9 @@ class MotorsDriver:
         if resp[msg_id_pos] == EMsgId.State.value:
 
             msg_state = MsgState.create_msg_state_from_raw(resp)
+            self.motors_position_dict = msg_state.position_dict
+            self.motors_velocity_dict = msg_state.velocity_dict
+
             self.motors_position[self.LB_MOTOR_POS] = msg_state.position_dict[EMotorID.LB]
             self.motors_velocity[self.LB_MOTOR_POS] = msg_state.velocity_dict[EMotorID.LB]
 
@@ -61,7 +67,7 @@ class MotorsDriver:
 
         else:
             # raise ParsingError("Tried to parse not state msg")
-            print("Not state message")
+            print("Tried to parse not state msg")
 
 
 class ParsingError(Exception):

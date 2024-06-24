@@ -10,7 +10,7 @@ from recognizer.messages.MsgCmd import MsgCmd
 
 class MotorsControllerManager:
 
-    def __init__(self, comm_driver: ICommunicationDrv, motors_driver: MotorsDriver, debug_serial_cmds=True):
+    def __init__(self, comm_driver: ICommunicationDrv, motors_driver: MotorsDriver, debug_serial_cmds=False):
 
         self.comm_drv = comm_driver
         self.__motors_driver = motors_driver
@@ -60,10 +60,10 @@ class MotorsControllerManager:
 
         return resp
 
-    #todo
+    # todo
     def send_raw_command(self, msg_cmd_raw: bytes):
 
-        self.comm_drv.send(msg_cmd_raw)
+        self.comm_drv.send_raw_msg(msg_cmd_raw)
         if (self.debug_serial_cmds):
             print(f"Sent: {msg_cmd_raw}")
 
