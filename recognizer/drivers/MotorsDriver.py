@@ -60,7 +60,8 @@ class MotorsDriver:
             self.motors_velocity[self.RF_MOTOR_POS] = msg_state.velocity_dict[EMotorID.RF]
 
         else:
-            raise ParsingError("Tried to parse not state msg")
+            # raise ParsingError("Tried to parse not state msg")
+            print("Not state message")
 
 
 class ParsingError(Exception):

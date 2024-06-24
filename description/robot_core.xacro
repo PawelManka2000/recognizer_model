@@ -4,6 +4,14 @@
 <xacro:include filename="materials.xacro" />
 <xacro:include filename="inertial_macros.xacro" />
 
+<joint name="odom" type="fixed">
+  <parent link="odom"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<link name="odom"/>
+
 
 <link name="base_link">
 </link>
@@ -15,7 +23,6 @@
 </joint>
 
 <link name="chassis">
-
 
     <visual>
         <origin xyz="0.0 0 0.0" rpy="0 0 0"/>

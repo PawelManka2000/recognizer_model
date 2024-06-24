@@ -13,6 +13,7 @@ from recognizer.drivers.MotorsDriver import MotorsDriver
 from recognizer.drivers.SerialDrv import SerialDrv
 from recognizer.enums.EOmniDirModeId import EOmniDirModeId
 from recognizer.manager.MotorsControllerManager import MotorsControllerManager
+from recognizer.nodes.OdometryPublisher import OdometryPublisher
 from recognizer.nodes.RobotStatePublisher import EncoderJointStatePublisher
 from recognizer.recognizer_gui import main_gui
 
@@ -56,11 +57,15 @@ def main(args=None):
     motors_controller_manager = MotorsControllerManager(serial_drv, motors_driver)
 
     # motors_controller_manager.send_ctrl_velo_motor_command(EOmniDirModeId.FORWARD, 3.5)
-
     motor_joint_state_publisher = EncoderJointStatePublisher(motors_controller_manager)
 
+    odometry_publisher_node = OdometryPublisher()
+
     try:
-        rclpy.spin(motor_joint_state_publisher)
+        executor = rclpy.executors.MultiThreadedExecutor()
+        executor.add_node(motor_joint_state_publisher)
+        executor.add_node(odometry_publisher_node)
+        executor.spin()
     except KeyboardInterrupt:
         pass
     finally:

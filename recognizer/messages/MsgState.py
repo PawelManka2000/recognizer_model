@@ -6,16 +6,25 @@ from recognizer.enums.EMsgId import EMsgId
 
 
 class MsgState:
-
+    # General message offsets
     MSG_ID_LEN = 1
-    MSG_ID_OFFSET = 0
+    MSG_ID_OFFSET_BEGIN = 0
 
-    MOTOR_ID_OFFSET = 0
-    VELOCITY_OFFSET = 1
-    POSITION_OFFSET = 3
+    # Single State payload offsets
+    MOTOR_ID_OFFSET_BEGIN = 0
+    MOTOR_ID_OFFSET_END = 1
+
+    VELOCITY_OFFSET_BEGIN = 1
+    VELOCITY_OFFSET_END = 3
+
+    POSITION_OFFSET_BEGIN = 3
+    POSITION_OFFSET_END = 7
 
     SINGLE_STATE_LENGTH = 7
     NO_OF_STATES = 4
+
+    POSITION_DEC_EXPANSION = 2
+    VELOCITY_DEV_EXPANSION = 2
 
     def __init__(self, msg_id: EMsgId, position_dict, velocity_dict):
         self.msg_id = msg_id
@@ -32,22 +41,23 @@ class MsgState:
 
     @staticmethod
     def create_msg_state_from_raw(msg_state: bytes):
-        msg_id = int(msg_state[MsgState.MSG_ID_OFFSET])
+        msg_id = int(msg_state[MsgState.MSG_ID_OFFSET_BEGIN])
         position_dict = {}
         velocity_dict = {}
 
         for i in range(MsgState.NO_OF_STATES):
-
             it = i * MsgState.SINGLE_STATE_LENGTH + MsgState.MSG_ID_LEN
             e_motor_id = int(msg_state[it])
-            velo_num = int(msg_state[it + MsgState.VELOCITY_OFFSET])
-            velo_fr = int(msg_state[it + MsgState.VELOCITY_OFFSET + 1])
-            velo = velo_num + velo_fr / 100
+            velo_from_bytes = int.from_bytes(
+                (msg_state[it + MsgState.VELOCITY_OFFSET_BEGIN: it + MsgState.VELOCITY_OFFSET_END]), byteorder='big')
 
-            pos_value_bytes = msg_state[it + MsgState.POSITION_OFFSET: it + MsgState.SINGLE_STATE_LENGTH]
-            pos_int_value = struct.unpack('>i', pos_value_bytes)[0]
+            velo_float = velo_from_bytes / 100
+            # breakpoint()
+            pos_value_bytes = msg_state[it + MsgState.POSITION_OFFSET_BEGIN: it + MsgState.POSITION_OFFSET_END]
+            pos_int = int.from_bytes(pos_value_bytes, byteorder='big', signed=True)
+            pos_float = pos_int/ 100
 
-            velocity_dict[EMotorID(e_motor_id)] = velo
-            position_dict[EMotorID(e_motor_id)] = float(pos_int_value)
+            velocity_dict[EMotorID(e_motor_id)] = velo_float
+            position_dict[EMotorID(e_motor_id)] = pos_float
 
         return MsgState(EMsgId(msg_id), position_dict, velocity_dict)

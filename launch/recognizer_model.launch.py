@@ -21,9 +21,12 @@ def generate_launch_description():
     recognizer_state_publisher = Node(
         package='robot_state_publisher', 
         executable='robot_state_publisher',
+        name='robot_state_publisher',
         output='screen',
         parameters=[state_publisher_params]
         )
+
+
     return LaunchDescription([
 
         recognizer_state_publisher

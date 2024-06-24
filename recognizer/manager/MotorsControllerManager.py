@@ -60,6 +60,7 @@ class MotorsControllerManager:
 
         return resp
 
+    #todo
     def send_raw_command(self, msg_cmd_raw: bytes):
 
         self.comm_drv.send(msg_cmd_raw)
