@@ -12,19 +12,29 @@ class SpeedControlApp(tk.Tk):
         self.title("Robot Speed Control")
         self.geometry("300x400")
 
-        # Speed slider and label
+        # Speed label
+        self.set_speed_label = ttk.Label(self, text="Set Speed")
+        self.set_speed_label.pack(pady=10)
+
+        # Speed slider and value display
         self.speed_label = ttk.Label(self, text="Speed: 0.0")
-        self.speed_label.pack(pady=10)
+        self.speed_label.pack(pady=5)
 
-        self.speed_slider = ttk.Scale(self, from_=0.0, to=15.0, orient='horizontal', command=self.update_velo)
+        self.speed_slider = ttk.Scale(self, from_=0.0, to=15.0, orient='horizontal')
         self.speed_slider.pack(pady=10)
+        self.speed_slider.bind("<ButtonRelease-1>", self.update_velo_on_release)
 
-        # PWM slider and label
+        # PWM label
+        self.set_pwm_label = ttk.Label(self, text="Set PWM")
+        self.set_pwm_label.pack(pady=10)
+
+        # PWM slider and value display
         self.pwm_label = ttk.Label(self, text="PWM Value: 0")
-        self.pwm_label.pack(pady=10)
+        self.pwm_label.pack(pady=5)
 
-        self.pwm_slider = ttk.Scale(self, from_=0, to=100, orient='horizontal', command=self.update_pwm)
+        self.pwm_slider = ttk.Scale(self, from_=0, to=100, orient='horizontal')
         self.pwm_slider.pack(pady=10)
+        self.pwm_slider.bind("<ButtonRelease-1>", self.update_pwm_on_release)
 
         # Control buttons
         self.forward_button = ttk.Button(self, text="Forward", command=self.move_forward)
@@ -42,6 +52,10 @@ class SpeedControlApp(tk.Tk):
         self.stop_button = ttk.Button(self, text="Stop", command=self.stop)
         self.stop_button.pack(pady=5)
 
+        # Exit button
+        self.exit_button = ttk.Button(self, text="Exit", command=self.close_app)
+        self.exit_button.pack(pady=5)
+
         self.omnidir_mode = EOmniDirModeId.STOP
         self.motor_controller_manager = motor_controller_manager
         self.speed_ctrl_flag = False
@@ -54,13 +68,15 @@ class SpeedControlApp(tk.Tk):
         else:
             self.motor_controller_manager.send_pwm_motor_command(self.omnidir_mode, self.pwm)
 
-    def update_velo(self, event):
+    def update_velo_on_release(self, event):
         self.velo = float(self.speed_slider.get())
+        self.speed_label.config(text=f"Speed: {self.velo:.1f}")
         self.speed_ctrl_flag = True
         self.send_motor_ctrl_cmd()
 
-    def update_pwm(self, event):
-        self.pwm_value = int(self.pwm_slider.get())
+    def update_pwm_on_release(self, event):
+        self.pwm = int(self.pwm_slider.get())
+        self.pwm_label.config(text=f"PWM Value: {self.pwm}")
         self.speed_ctrl_flag = False
         self.send_motor_ctrl_cmd()
 
@@ -83,3 +99,12 @@ class SpeedControlApp(tk.Tk):
     def stop(self):
         self.omnidir_mode = EOmniDirModeId.STOP
         self.send_motor_ctrl_cmd()
+
+    def close_app(self):
+        self.destroy()  # Zamyka aplikację
+
+
+if __name__ == "__main__":
+    motor_controller_manager = MotorsControllerManager()  # Tworzymy instancję zarządcy silników
+    app = SpeedControlApp(motor_controller_manager)
+    app.mainloop()

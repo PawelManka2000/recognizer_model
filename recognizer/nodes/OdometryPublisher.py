@@ -26,7 +26,7 @@ class OdometryPublisher(Node):
         super().__init__('odometry_publisher')
         self.publisher_ = self.create_publisher(Odometry, 'odom', 10)
         self.odom_trans_broadcaster = TransformBroadcaster(self)
-        self.dt = 0.2
+        self.dt = 0.5
         self.timer = self.create_timer(self.dt, self.timer_callback)
         self.x = 0.0
         self.y = 0.0
@@ -43,12 +43,22 @@ class OdometryPublisher(Node):
         for e_motor_id in EMotorID:
             angular_displacements[e_motor_id] = self.motors_driver.motors_position_dict[
                                                     e_motor_id] - self.previous_motors_position[e_motor_id]
-            linear_displacements[e_motor_id] = angular_displacements[e_motor_id] * wheel_radius
-            linear_vel[e_motor_id] = angular_displacements[e_motor_id] / self.dt
-            vx = vx + (linear_vel[e_motor_id] / MotorsDriver.NO_OF_MOTORS)
+            # linear_displacements[e_motor_id] = angular_displacements[e_motor_id] * wheel_radius
+            #
+            if angular_displacements[e_motor_id]  > 0:
+                linear_vel[e_motor_id] = self.motors_driver.motors_velocity_dict[e_motor_id]*wheel_radius/2
+            else:
+                linear_vel[e_motor_id] = -self.motors_driver.motors_velocity_dict[e_motor_id] * wheel_radius /2
+
+            vx += (linear_vel[e_motor_id] / MotorsDriver.NO_OF_MOTORS)
 
         omega_z = ((linear_vel[EMotorID.RB] + linear_vel[EMotorID.RF]) - (
                 linear_vel[EMotorID.LB] + linear_vel[EMotorID.LF])) * np.sin(alpha)
+        print(linear_vel)
+        print(omega_z)
+        print(vx)
+        # omega_z = ((linear_vel[EMotorID.RB] + linear_vel[EMotorID.RF]) - (
+        #         linear_vel[EMotorID.LB] + linear_vel[EMotorID.LF])) / w
 
         self.x += vx * self.dt * np.cos(self.theta)
         self.y += vx * self.dt * np.sin(self.theta)
@@ -56,9 +66,8 @@ class OdometryPublisher(Node):
         self.previous_motors_position = self.motors_driver.motors_position_dict
 
     def timer_callback(self):
-        self.update_pose()
 
-        # Create the odometry transform message
+        self.update_pose()
         odom_trans_msg = TransformStamped()
         odom_trans_msg.header.stamp = self.get_clock().now().to_msg()
         odom_trans_msg.header.frame_id = 'odom'
@@ -73,10 +82,9 @@ class OdometryPublisher(Node):
         odom_trans_msg.transform.rotation.z = odom_quat[2]
         odom_trans_msg.transform.rotation.w = odom_quat[3]
 
-        # Send the transform
+
         self.odom_trans_broadcaster.sendTransform(odom_trans_msg)
 
-        # Create the odometry message
         odom_msg = Odometry()
         odom_msg.header.stamp = self.get_clock().now().to_msg()
         odom_msg.header.frame_id = 'odom'

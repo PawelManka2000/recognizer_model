@@ -13,9 +13,8 @@ class JointStatePublisher(Node):
     def __init__(self, motors_controller_manager: MotorsControllerManager):
         super().__init__('encoder_joint_state_publisher')
         self.publisher_ = self.create_publisher(JointState, 'joint_states', 10)
-        self.timer = self.create_timer(0.2, self.timer_callback)
+        self.timer = self.create_timer(0.3, self.timer_callback)
 
-        # Utwórz obiekt JointState raz
         self.joint_state = JointState()
         self.joint_state.name = ['left_back_wheel_joint', 'left_front_wheel_joint',
                                  'right_back_wheel_joint', 'right_front_wheel_joint']
@@ -31,11 +30,6 @@ class JointStatePublisher(Node):
             return
 
         motors_driver = self.motors_controller_manager.motors_driver
-
-        # breakpoint()
-        # self.joint_state.position = [random.uniform(-1, 1) for _ in range(4)]
-        #
-        # breakpoint()
         self.joint_state.position = motors_driver.motors_position
         self.joint_state.header.stamp = self.get_clock().now().to_msg()
         self.publisher_.publish(self.joint_state)

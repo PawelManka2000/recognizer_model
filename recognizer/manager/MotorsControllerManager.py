@@ -40,13 +40,11 @@ class MotorsControllerManager:
     def send_pwm_motor_command(self, omnidir_mode: EOmniDirModeId, pwm: int):
 
         payload = [omnidir_mode.value, pwm]
-        msg_cmd = MsgCmd(EMsgId.MsgCmdReq.value, ECmdCode.CTRL_VELO.value, payload)
+        msg_cmd = MsgCmd(EMsgId.MsgCmdReq.value, ECmdCode.PWM_DRIVING.value, payload)
         #TODO add error handling
-        try:
-            resp = self.send_raw_command(bytes(msg_cmd))
-            return resp
-        except SerialDrvTimeout as e:
-            pass
+
+        self.send_raw_command(bytes(msg_cmd))
+
 
     def send_ctrl_velo_motor_command(self, omnidir_mode: EOmniDirModeId, velocity: float):
 
@@ -57,19 +55,16 @@ class MotorsControllerManager:
         payload = [omnidir_mode.value, velo_whole_num, velo_fraction_num]
         msg_cmd = MsgCmd(EMsgId.MsgCmdReq.value, ECmdCode.CTRL_VELO.value, payload)
         #TODO add error handling
-        try:
-            resp = self.send_raw_command(bytes(msg_cmd))
-            return resp
-        except SerialDrvTimeout as e:
-            pass
+
+        self.send_raw_command(bytes(msg_cmd))
 
 
     def send_encoder_read_command(self):
 
         payload = []
         msg_cmd = MsgCmd(EMsgId.MsgCmdReq.value, ECmdCode.MOTORS_STATE.value, payload)
-        resp = self.send_raw_command(bytes(msg_cmd))
-
+        self.send_raw_command(bytes(msg_cmd))
+        resp = self.comm_drv.receive_response()
         return resp
 
     # todo
@@ -79,7 +74,7 @@ class MotorsControllerManager:
         if (self.debug_serial_cmds):
             print(f"Sent: {msg_cmd_raw}")
 
-        return self.comm_drv.receive_response()
+
 
 
 class UpdateMotorsError(Exception):
