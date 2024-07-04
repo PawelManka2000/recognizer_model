@@ -54,9 +54,7 @@ class OdometryPublisher(Node):
 
         omega_z = ((linear_vel[EMotorID.RB] + linear_vel[EMotorID.RF]) - (
                 linear_vel[EMotorID.LB] + linear_vel[EMotorID.LF])) * np.sin(alpha)
-        print(linear_vel)
-        print(omega_z)
-        print(vx)
+
         # omega_z = ((linear_vel[EMotorID.RB] + linear_vel[EMotorID.RF]) - (
         #         linear_vel[EMotorID.LB] + linear_vel[EMotorID.LF])) / w
 

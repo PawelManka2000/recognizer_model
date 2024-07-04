@@ -3,6 +3,7 @@
 
 <xacro:include filename="materials.xacro" />
 <xacro:include filename="inertial_macros.xacro" />
+<xacro:include filename="lidar.xacro" />
 
 <joint name="odom" type="fixed">
   <parent link="odom"/>

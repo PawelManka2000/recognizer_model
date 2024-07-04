@@ -9,6 +9,7 @@ from recognizer.drivers.SerialDrv import SerialDrv
 from recognizer.enums.EOmniDirModeId import EOmniDirModeId
 from recognizer.manager.MotorsControllerManager import MotorsControllerManager
 from recognizer.nodes.OdometryPublisher import OdometryPublisher
+from recognizer.nodes.RPLidarPublisher import RPLidarPublisher
 from recognizer.nodes.RobotStatePublisher import JointStatePublisher
 
 serial_port = "/dev/stmG4"
@@ -31,11 +32,14 @@ def ros2_main(args=None):
     executor = rclpy.executors.MultiThreadedExecutor()
     motor_joint_state_publisher = JointStatePublisher(motors_controller_manager)
     odometry_publisher_node = OdometryPublisher(motors_driver)
+    # rp_lidar_publisher = RPLidarPublisher()
+
 
     try:
 
         executor.add_node(motor_joint_state_publisher)
         executor.add_node(odometry_publisher_node)
+        # executor.add_node(rp_lidar_publisher)
         executor.spin()
 
     except KeyboardInterrupt:
@@ -43,6 +47,7 @@ def ros2_main(args=None):
     finally:
         motor_joint_state_publisher.destroy_node()
         odometry_publisher_node.destroy_node()
+        # rp_lidar_publisher.destroy_node()
         serial_drv.close_conn()
         executor.shutdown()
         rclpy.shutdown()

@@ -13,6 +13,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name, ['launch/recognizer_model.launch.py']),
+        ('share/' + package_name, ['launch/lidar_node.launch.py']),
         (os.path.join('share', package_name, 'description'), glob(os.path.join('description', '*.xacro')))
 
     ],
